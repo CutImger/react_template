@@ -1,15 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.less'
-import { Button } from 'antd'
+import React from 'react'
+import { Button, Space } from 'antd'
+import './app.less'
 
-function App() {
-  console.log(import.meta.env)
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <h1>hello world</h1>
-      <Button type="primary">Primary Button</Button>
-      <div className="box"></div>
+    <div id='app'>
+      <Space direction='vertical' className=' w-28 h-16 bg-red-600'>
+        <Space>
+          <Button type='primary'>测试提交1111</Button>
+          <Button type='primary' disabled>
+            Primary(disabled)
+          </Button>
+        </Space>
+      </Space>
     </div>
   )
 }
