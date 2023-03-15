@@ -1,18 +1,36 @@
-import React from 'react'
-import { Button, Space } from 'antd'
+import React, { useEffect } from 'react'
+import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
+import { useRoutes, useLocation, Outlet } from 'react-router-dom'
+import RouteList from './router/index'
+import LayOut from './layout/index'
 import './app.less'
 
-const App: React.FC = () => {
+type MyComponentProps = {
+  themeColor: string
+}
+
+const App: React.FC<MyComponentProps> = props => {
+  const location = useLocation()
+  const loadingBar = React.useRef<LoadingBarRef>(null)
+  const routing = useRoutes(RouteList)
+
+  useEffect(() => {
+    loadingBar.current?.continuousStart()
+
+    const timer = setTimeout(() => {
+      loadingBar.current?.complete()
+      clearTimeout(timer)
+    }, 300)
+
+    return () => {
+      loadingBar.current?.complete()
+    }
+  }, [location])
+
   return (
-    <div id='app'>
-      <Space direction='vertical' className=' w-28 h-16 bg-red-600'>
-        <Space>
-          <Button type='primary'>测试提交1111</Button>
-          <Button type='primary' disabled>
-            Primary(disabled)
-          </Button>
-        </Space>
-      </Space>
+    <div id='app' className='w-screen h-screen'>
+      <LoadingBar color={props.themeColor} ref={loadingBar} />
+      {routing}
     </div>
   )
 }

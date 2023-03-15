@@ -7,7 +7,8 @@ export const clickEffect = () => {
   let origin: { x: any; y: any }
   let normal: { x: any; y: any }
   let ctx: any
-  const colours = ['#F73859', '#14FFEC', '#00E0FF', '#FF99FE', '#FAF15D']
+  const colours = ['#A76AAE', '#E7C996', '#ECECD0', '#FF7F9D', '#FF8C9F', '#FFB07F']
+
   const canvas = document.createElement('canvas')
   document.body.appendChild(canvas)
   canvas.setAttribute(
